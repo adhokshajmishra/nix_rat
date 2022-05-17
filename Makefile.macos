@@ -1,0 +1,15 @@
+CC = g++
+CFLAGS	= -O0 -Wall -DDEBUG -ggdb -std=c++14
+INCLUDES = -I./src/client -I./src/server -I./mbedtls-2.9.0/include/ -I./3rdparty/include -I./ -L./mbedtls-2.9.0/build/library -L./3rdparty/lib -pthread
+LIBS =	-lmbedtls 			\
+	-lmbedx509			\
+	-lmbedcrypto			\
+    -lreadline-static           \
+	-lncurses-static
+
+all:
+	$(CC) $(CFLAGS) $(INCLUDES) -o rat src/server/rat.cpp src/server/proc.cpp src/server/persistence.cpp $(LFLAGS) $(LIBS) src/server/file_operations.cpp src/compression.cpp
+	$(CC) $(CFLAGS) $(INCLUDES) -o rat-client src/client/rat-client.cpp $(LFLAGS) $(LIBS) src/client/file_operations-client.cpp src/compression.cpp
+
+clean:
+	rm -f rat rat-client

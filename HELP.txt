@@ -1,0 +1,45 @@
+Splinter v1.0
+
+COMMAND		SYNTAX				EXAMPLE				PURPOSE
+======================================================================================================
+cd		cd <absolute path>		cd /tmp				change directory
+
+.kill		.kill				.kill				Kill client and server
+
+.quit		.quit				.quit				Kill client only
+
+timeout		timeout <integer>		timeout 10			Change timeout to new
+										value. If parameter is 
+										invalid, timeout is set
+										to 0.
+
+upload		upload <local path>		upload /tmp/data1		Upload local file to remote
+		<remote path>			/tmp/data2			server on given location
+
+download	download <remote path>		download /tmp/data1		Download remote file from
+		<local path>			/tmp/data2			given location
+
+install		install <option>		install status			Read persistence status
+						install user			Install persistence at user 
+										level (login required)
+						install system			Install persistence at system 
+										level (no login required)
+
+uninstall	uninstall <option>		uninstall user			Remove user persistence
+						uninstall system		Remove system persistence
+
+callback        callback <ip> <port>            callback 1.1.1.1 10 5           Connect to client on remote ip
+		<timeout>							Connection will be reattempted at
+										every <timeout> seconds
+
+		callback <option>		callback status			Lists all active callbacks
+						callback stop			Disables all non-connected callbacks
+										Marks all connected callbacks for stop
+
+kill_timer	kill_timer <option> <param>	kill_timer set			Sets kill timer. Rat will terminate
+						2019-03-01T11:25:00		and wipe itself from system
+
+						kill_timer status		Returns timestamp on which rat will
+										be killed
+
+<shell>		<shell commands>		ps aux				Run any shell command
